@@ -26,3 +26,20 @@ class BookAssignment(models.Model):
 
     def __str__(self):
         return f"{self.reader} → {self.book.title}"
+
+class BookAssignment(models.Model):
+    reader = models.ForeignKey(
+        Reader,
+        on_delete=models.CASCADE,
+        related_name="borrowed_books"
+    )
+    book = models.ForeignKey(
+        Books,
+        on_delete=models.CASCADE,
+        related_name="assignments"
+    )
+    assigned_date = models.DateField(auto_now_add=True)
+    returned_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.reader} → {self.book}"
