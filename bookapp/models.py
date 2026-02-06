@@ -17,7 +17,8 @@ class Reader(models.Model):
     email = models.EmailField(unique=True)
 
     def __str__(self):
-        return self.name
+        return f'Name: {self.name}, email: {self.email}'
+
 class BookAssignment(models.Model):
     reader = models.ForeignKey(Reader, on_delete=models.CASCADE)
     book = models.ForeignKey(Books, on_delete=models.CASCADE)
